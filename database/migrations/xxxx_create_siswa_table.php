@@ -10,13 +10,14 @@ return new class extends Migration {
             $table->id();
             $table->string('nama');
             $table->string('nis')->unique();
-            $table->string('kelas');
+            $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->text('alamat');
             $table->string('foto')->nullable();
             $table->timestamps();
         });
     }
+
     public function down(): void {
         Schema::dropIfExists('siswa');
     }
